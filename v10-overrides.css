@@ -1,0 +1,87 @@
+
+/* Resume Tailor v10 overrides */
+
+/* Role-based behavior */
+.role-input-row{
+  display:grid;
+  grid-template-columns:minmax(0,1.4fr) minmax(180px,.6fr);
+  gap:14px;
+  align-items:end;
+  margin-top:10px;
+}
+.role-mode-off{grid-template-columns:1.3fr 1fr 1fr 54px!important;}
+.role-mode-note{
+  margin-top:9px;
+  font-size:11px;
+  color:var(--muted);
+}
+.role-off .include-role{display:none!important;}
+.role-on .include-role{display:flex!important;}
+
+/* Keep the assistant as the original right-side panel on normal desktop/tablet widths. */
+.preview-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 370px;
+  align-items:start;
+}
+.ai-assistant{
+  grid-column:2;
+  grid-row:1;
+  position:sticky;
+  top:76px;
+  align-self:start;
+  max-height:calc(100vh - 76px);
+  overflow:auto;
+}
+.document-workspace{
+  grid-column:1;
+  grid-row:1;
+}
+
+/* Make AI controls compact and clearly top-aligned. */
+.ai-assistant h2{margin-top:0;}
+.ai-card textarea{min-height:190px;}
+.json-area{min-height:260px!important;}
+
+/* Credit text remains readable */
+footer span:last-child{font-weight:600;}
+
+@media(max-width:1100px){
+  .preview-layout{
+    grid-template-columns:minmax(520px,1fr) 330px!important;
+    min-width:850px;
+  }
+  .preview-page{overflow-x:auto;}
+  .ai-assistant{
+    grid-column:2!important;
+    grid-row:1!important;
+    position:sticky!important;
+    top:0!important;
+    height:calc(100vh - 182px)!important;
+    border-left:1px solid var(--border)!important;
+  }
+  .document-workspace{
+    grid-column:1!important;
+    grid-row:1!important;
+    min-height:650px;
+  }
+}
+
+@media(max-width:700px){
+  .role-input-row{grid-template-columns:1fr;}
+  .role-mode-off{grid-template-columns:1fr!important;}
+  .preview-layout{
+    display:grid!important;
+    grid-template-columns:520px 310px!important;
+    min-width:830px!important;
+  }
+  .ai-assistant{
+    display:block!important;
+    width:310px;
+    height:calc(100vh - 170px)!important;
+    position:sticky!important;
+    right:0;
+    top:0!important;
+  }
+  .document-workspace{width:520px;}
+}
