@@ -1,0 +1,119 @@
+
+/* Resume Tailor v11 — Professional Senior Resume Layout */
+.resume-page{
+  width:8.5in!important;
+  min-height:11in!important;
+  background:#fff!important;
+  color:#222!important;
+  padding:0.58in 0.62in!important;
+  font-family:Arial, Helvetica, sans-serif!important;
+  font-size:9.4pt!important;
+  line-height:1.16!important;
+  letter-spacing:0!important;
+}
+.resume-page .resume-header{
+  text-align:center!important;
+  margin-bottom:9pt!important;
+}
+.resume-page .resume-name{
+  font-size:21.5pt!important;
+  line-height:1.05!important;
+  margin:0 0 3pt!important;
+  font-weight:700!important;
+  letter-spacing:0!important;
+}
+.resume-page .resume-role{
+  font-size:13.8pt!important;
+  line-height:1.08!important;
+  margin:0 0 5pt!important;
+  font-weight:700!important;
+  letter-spacing:0!important;
+}
+.resume-page .contact-row{
+  width:100%!important;
+  max-width:100%!important;
+  margin:5pt auto 8pt!important;
+  font-size:8.2pt!important;
+  line-height:1.25!important;
+  text-align:center!important;
+  letter-spacing:0!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+}
+.resume-section{margin-top:9pt!important;}
+.resume-section h3{
+  font-size:10.2pt!important;
+  line-height:1.1!important;
+  margin:0 0 4pt!important;
+  padding:0 0 2.5pt!important;
+  font-weight:700!important;
+  letter-spacing:.01em!important;
+}
+.resume-section p{margin:0!important;text-align:left!important;}
+.skill-row{margin:1.2pt 0!important;line-height:1.18!important;}
+.job-block{
+  margin:6pt 0 8pt!important;
+  break-inside:avoid!important;
+  page-break-inside:avoid!important;
+}
+.job-header{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:start!important;
+  gap:12pt!important;
+  font-weight:700!important;
+  line-height:1.12!important;
+  margin-bottom:1.5pt!important;
+}
+.job-header>span:last-child{
+  text-align:right!important;
+  white-space:nowrap!important;
+  font-weight:400!important;
+}
+.job-two{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:12pt!important;
+  align-items:start!important;
+  line-height:1.12!important;
+  margin-bottom:1.5pt!important;
+}
+.job-two>span:last-child{text-align:right!important;white-space:nowrap!important;}
+.job-two small{
+  display:block!important;
+  margin-top:1pt!important;
+  font-size:8.6pt!important;
+  font-weight:400!important;
+}
+.job-block ul{margin:3pt 0 0 13pt!important;padding:0!important;}
+.job-block li{
+  margin:0 0 2.2pt!important;
+  padding-left:1pt!important;
+  line-height:1.17!important;
+  text-align:left!important;
+}
+.edu-line,.cert-line{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:12pt!important;
+  margin:2.5pt 0!important;
+  align-items:start!important;
+}
+.edu-line>span:last-child,.cert-line>span:last-child{
+  white-space:nowrap!important;
+  text-align:right!important;
+}
+.resume-section h3,.job-header,.job-two,.edu-line,.cert-line{
+  break-after:avoid!important;
+  page-break-after:avoid!important;
+}
+@media print{
+  .resume-page{
+    width:8.5in!important;
+    min-height:11in!important;
+    box-shadow:none!important;
+    transform:none!important;
+    margin:0!important;
+  }
+}
