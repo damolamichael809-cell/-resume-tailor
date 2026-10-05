@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resume Tailor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="app">
+  <header class="topbar no-print">
+    <div class="brand"><div class="brandmark">R</div><div><div class="brandname">Resume Tailor</div><div class="brandsub">AI-assisted resume builder</div></div></div>
+    <nav class="tabs" id="tabs">
+      <button class="tab active" data-tab="resume">Resume</button>
+      <button class="tab" data-tab="profile">Profile</button>
+    </nav>
+    <div class="top-actions">
+      <button class="btn ghost" id="importBtn">Import</button>
+      <button class="btn ghost" id="exportBtn">Export</button>
+      <button class="btn primary" id="printBtn">Download PDF</button>
+      <input id="importFile" type="file" accept="application/json" hidden />
+    </div>
+  </header>
+
+  <main>
+    <section id="resumeTab" class="tabpane active">
+      <div class="resume-layout">
+        <aside class="left-panel no-print">
+          <div class="panel-heading">
+            <h2>Job Description</h2>
+            <p>Paste the role you want to tailor your resume for.</p>
+          </div>
+          <textarea id="jobDescription" class="big-textarea" placeholder="Paste the complete job description here..."></textarea>
+          <div class="field-row">
+            <label>Company override</label>
+            <input id="companyOverride" placeholder="Optional" />
+          </div>
+          <button id="tailorResumeBtn" class="btn primary full tailor-btn">Tailor Resume</button>
+          <button id="buildPromptBtn" class="btn ghost full">Build / Refresh AI Prompt</button>
+          <div id="aiRunStatus" class="run-status" aria-live="polite"></div>
+          <div class="helper-card">
+            <strong>Workflow</strong>
+            <ol><li>Complete your Profile.</li><li>Paste the complete job description.</li><li>Click <b>Tailor Resume</b>.</li><li>Review the generated resume in the live preview.</li><li>Download the finished PDF or JSON.</li></ol>
+            <p class="small-note">The AI request is sent through the server so your API key is never exposed in the browser.</p>
+          </div>
+        </aside>
+
+        <section class="preview-wrap">
+          <div class="preview-toolbar no-print">
+            <div><span class="eyebrow">LIVE PREVIEW</span><span id="jsonStatus" class="status neutral">Waiting for JSON</span></div>
+            <div class="toolbar-actions"><button id="resetResumeBtn" class="icon-btn">Reset output</button></div>
+          </div>
+          <article id="resumePreview" class="paper"></article>
+        </section>
+
+        <aside class="ai-panel no-print">
+          <div class="ai-inner">
+            <h1>AI Assistant <span id="modelBadge" class="model-badge">Server AI</span></h1>
+            <div class="card">
+              <div class="card-title"><span>AI Prompt <small>(manual fallback)</small></span><button id="copyPromptBtn" class="mini-btn">Copy</button></div>
+              <div class="card-body"><textarea id="aiPrompt" readonly class="mono prompt"></textarea></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><span>JSON Response <small>(generated automatically)</small></span><label class="toggle-label"><span>Auto Download</span><input type="checkbox" id="autoDownload" /></label></div>
+              <div class="card-body">
+                <textarea id="jsonResponse" class="mono json" placeholder='{
+  "company": "...",
+  "summary": "...",
+  "skills": [],
+  "experience": [],
+  "education": []
+}'></textarea>
+                <div class="inline-actions"><button id="pasteJsonBtn" class="mini-btn">Paste</button><button id="formatJsonBtn" class="mini-btn">Format</button><button id="downloadJsonBtn" class="mini-btn">JSON</button></div>
+                <div id="jsonError" class="error"></div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="profileTab" class="tabpane">
+      <div class="profile-page no-print">
+        <div class="profile-head"><div><h1>Profile</h1><p>Your details are saved locally in this browser.</p></div><div id="saveBadge" class="save-badge">Saved</div></div>
+        <div class="profile-grid">
+          <div class="settings-card wide">
+            <h3>Personal Information</h3>
+            <div class="form-grid two">
+              <label>Full name<input id="fullName" placeholder="Stephen Burks" /></label>
+              <label>Job title<input id="jobTitle" placeholder="Senior Software Engineer" /></label>
+              <label>Email<input id="email" type="email" placeholder="name@email.com" /></label>
+              <label>Phone<input id="phone" placeholder="(555) 555-5555" /></label>
+              <label>Location<input id="location" placeholder="City, State" /></label>
+              <label>LinkedIn / Portfolio<input id="links" placeholder="linkedin.com/in/..." /></label>
+            </div>
+          </div>
+          <div class="settings-card">
+            <h3>Resume Settings</h3>
+            <label>Seniority<select id="seniority"><option value="">Not specified</option><option>Junior</option><option>Mid-level</option><option>Senior</option><option>Staff</option><option>Principal</option><option>Lead</option></select></label>
+            <label class="checkline"><input type="checkbox" id="preserveTitles" /> Preserve original job titles</label>
+            <label class="checkline"><input type="checkbox" id="showLinks" checked /> Show links in header</label>
+          </div>
+          <div class="settings-card">
+            <h3>AI Integration</h3>
+            <p class="muted">Tailoring runs through the included server endpoint using the server-side <code>OPENAI_API_KEY</code>. No API key is stored in the browser.</p>
+            <p class="muted">Profile data and the pasted job description are sent to the configured AI provider only when you click <b>Tailor Resume</b>.</p>
+          </div>
+          <div class="settings-card wide">
+            <div class="section-line"><h3>Work Experience</h3><button id="addExperienceBtn" class="mini-btn">+ Add</button></div>
+            <div id="experiences"></div>
+          </div>
+          <div class="settings-card wide">
+            <div class="section-line"><h3>Education</h3><button id="addEducationBtn" class="mini-btn">+ Add</button></div>
+            <div id="educations"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
