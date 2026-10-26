@@ -19,35 +19,62 @@ Do NOT include markdown fences, explanations, comments, or prose outside JSON.
 MANDATORY MAIN JOB TITLE RULE
 ==================================================
 
-The JSON "title" field must contain ONLY the short,
-primary job title from the job description.
 
-Identify the actual main position being hired for.
+========================================
+STRICT MAIN JOB TITLE RULE
+========================================
 
-RULES:
-- Use only one primary job title.
+The JSON "title" field must contain ONLY
+the short, core professional job title.
+
+Identify the actual job role and seniority.
+
+MANDATORY:
+- Remove technology and product names.
+- Remove platform and vendor names.
+- Remove specializations and project names.
+- Remove company names and locations.
+- Remove SME labels and expertise descriptions.
+- Do not combine multiple titles.
 - Preserve the correct seniority level.
-- Do not include company names.
-- Do not include secondary job titles.
-- Do not include specializations or technology names.
-- Do not include locations or departments.
-- Do not combine multiple titles with slashes or dashes.
-- Do not add external information.
-- Do not invent a different job title.
+- Do not invent or add external information.
 
-EXAMPLE:
+EXAMPLES:
 
-Job Description:
-Application Developer
+Input:
 IBM Safer Payment SME - Senior Lead Software Engineer
 
-Correct JSON:
-"title": "Senior Lead Software Engineer"
+Output:
+"Senior Lead Software Engineer"
 
-Incorrect JSON:
-"title": "Application Developer – IBM Safer Payments SME / Senior Lead Software Engineer"
+Input:
+Senior Java Backend Developer
 
-Apply this rule to EVERY generated resume.
+Output:
+"Senior Backend Developer"
+
+Input:
+AWS Cloud Solutions Architect
+
+Output:
+"Cloud Solutions Architect"
+
+Input:
+Senior Python Software Engineer
+
+Output:
+"Senior Software Engineer"
+
+IMPORTANT:
+Never include IBM Safer Payments in the
+main title when the actual job role is
+Senior Lead Software Engineer.
+
+This rule takes priority over any other
+title generation instruction.
+
+========================================
+
 
 ==================================================
 
