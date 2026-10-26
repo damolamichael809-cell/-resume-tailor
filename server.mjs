@@ -107,8 +107,13 @@ MAX-INTERVIEW TAILORING RULES
 - Preserve actual company names, dates/periods, education, and certifications.
 - Do not invent employers, degrees, certifications, licenses, security clearances, employment dates, or job locations.
 - Historical role titles should stay materially faithful to the candidate's real role. You may normalize wording slightly when it remains equivalent and defensible.
-- The output "title" field should be the target job title or the closest defensible market-facing title.
-- Skills should be grouped into useful ATS categories and prioritize the technologies and concepts in the job description.
+- MANDATORY RESUME HEADER RULE:
+- The output "title" field MUST contain the exact job title from the job description.
+- Preserve the original wording, punctuation, and seniority.
+- Never rewrite, shorten, upgrade, or modify the job title.
+- Never add "Senior", "Lead", "Principal", or any other words unless they appear in the original job title.
+- Do not include the company name, location, department, or descriptive text in the title.
+- Apply this rule to every generated resume.- Skills should be grouped into useful ATS categories and prioritize the technologies and concepts in the job description.
 - Include skills that are directly supported or reasonably adjacent to the candidate's background and that the candidate could credibly discuss.
 - Summary should be approximately 55-90 words, dense with relevant value, seniority, domain, architecture/technical depth, and job-specific keywords.
 - For senior/staff/lead roles, emphasize ownership, system design, technical leadership, cross-functional influence, mentoring, reliability, architecture, and end-to-end delivery when applicable.
