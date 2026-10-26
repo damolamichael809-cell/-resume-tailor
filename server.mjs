@@ -14,6 +14,44 @@ function prompt(p,jd){
 Your output MUST be exactly ONE valid JSON object and nothing else.
 Do NOT include markdown fences, explanations, comments, or prose outside JSON.
 
+
+==================================================
+MANDATORY MAIN JOB TITLE RULE
+==================================================
+
+The JSON "title" field must contain ONLY the short,
+primary job title from the job description.
+
+Identify the actual main position being hired for.
+
+RULES:
+- Use only one primary job title.
+- Preserve the correct seniority level.
+- Do not include company names.
+- Do not include secondary job titles.
+- Do not include specializations or technology names.
+- Do not include locations or departments.
+- Do not combine multiple titles with slashes or dashes.
+- Do not add external information.
+- Do not invent a different job title.
+
+EXAMPLE:
+
+Job Description:
+Application Developer
+IBM Safer Payment SME - Senior Lead Software Engineer
+
+Correct JSON:
+"title": "Senior Lead Software Engineer"
+
+Incorrect JSON:
+"title": "Application Developer – IBM Safer Payments SME / Senior Lead Software Engineer"
+
+Apply this rule to EVERY generated resume.
+
+==================================================
+
+
 ========================================
 PRIMARY OBJECTIVE
 ========================================
